@@ -1,14 +1,43 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import NavBar from './components/NavBar';
 import News from './components/News';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
+import WeatherCard from './components/WeatherCard';
+import getFormattedWeatherData from "./services/weatherService";
 
 function App() {
   const pageSize = 5;
-  const apiKey = "60988c981f754dc3995925e641f6ca7f";
+  const apiKeyNews = "60988c981f754dc3995925e641f6ca7f";
   const [progress, setProgress] = useState(0);
+  const [weather, setWeather] = useState({ details:'No Detail', icon:'01d', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:0, timezone:1000, dt:1669793656, name:'Not Avilable', country:'No Country' });
+
+  useEffect(() => {
+
+    if (navigator.geolocation) {
+      console.log("Fetching users location.");
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        fetchWeather(lat,lon);
+      });
+    }
+
+    const fetchWeather = async (lat,lon) => {
+
+      await getFormattedWeatherData({lat,lon}).then((data) => {
+        console.log(
+          `App.js - Successfully fetched weather for ${data.name}, ${data.country}.`
+        );
+        console.log(data);
+
+        setWeather(data);
+      });
+    };
+
+  }, []);
+  
 
   return (
     <div className="App">
@@ -20,14 +49,14 @@ function App() {
         progress={progress} 
       />
         <Routes>
-          <Route  path="/" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general"/>}/> 
-          <Route  path="/business" element={<News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={pageSize} country="in" category="business"/>} /> 
-          <Route  path="/entertainment" element={<News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={pageSize} country="in" category="entertainment"/>} /> 
-          <Route  path="/general" element={<News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general"/>} />
-          <Route  path="/health" element={<News setProgress={setProgress} apiKey={apiKey} key="health" pageSize={pageSize} country="in" category="health"/>} />
-          <Route  path="/science" element={<News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={pageSize} country="in" category="science"/>} />
-          <Route  path="/sports" element={<News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country="in" category="sports"/>} />
-          <Route  path="/technology" element={<News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology"/>} />
+          <Route  path="/" element={<><div className="container"><div style={{ margin: '35px 0px -60px', marginTop: '90px' }}><WeatherCard weather={weather}></WeatherCard></div></div><News setProgress={setProgress} apiKey={apiKeyNews} key="general" pageSize={pageSize} country="in" category="general" /></>}/> 
+          <Route  path="/business" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="business" pageSize={pageSize} country="in" category="business"/>} /> 
+          <Route  path="/entertainment" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="entertainment" pageSize={pageSize} country="in" category="entertainment"/>} /> 
+          <Route  path="/general" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="general" pageSize={pageSize} country="in" category="general"/>} />
+          <Route  path="/health" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="health" pageSize={pageSize} country="in" category="health"/>} />
+          <Route  path="/science" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="science" pageSize={pageSize} country="in" category="science"/>} />
+          <Route  path="/sports" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="sports" pageSize={pageSize} country="in" category="sports"/>} />
+          <Route  path="/technology" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="technology" pageSize={pageSize} country="in" category="technology"/>} />
         </Routes>
       </Router>
     </div>

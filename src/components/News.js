@@ -55,8 +55,7 @@ const News = (props)=>{
                     hasMore={articles.length !== totalResults}
                     loader={<Spinner/>}
                 > 
-                    <div className="container">
-                         
+                    <div className="container">                 
                     <div className="card-group">
                         {articles.map((element) => {
                             return <div key={element.url}>
