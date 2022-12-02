@@ -31,11 +31,9 @@ function WeatherCard({
 }) {
   const KELVIN = 273;
   return (
-    <div className="card text-bg-light mb-6">
-      <div className="card-header">
-        <p>Weather Update</p>
-      </div>
-      <div className="card-body">
+    <div className="card text-bg-info border-primary mb-6 ">
+      <div className="card-header border-primary">Weather Update</div>
+      <div className={icon.includes('n') ? "card-body bg-secondary bg-opacity-25" : "card-body bg-warning bg-opacity-25"}>
         <div>
           <p>{formatToLocalTime(dt, timezone)}</p>
         </div>
@@ -45,11 +43,12 @@ function WeatherCard({
             <h1>{`${temp.toFixed() - KELVIN}°`}</h1>
           </div>
           <div className="col-sm-4">
-            <h5 class="card-title">{`${name}, ${country}`}</h5>
+            <br/>
+            <h5 className="card-title">{`${name}, ${country}`}</h5>
               <div className="flex ">
                 <p>{details}</p>
               </div>
-                <img src={iconUrlFromCode(icon)} style={{marginTop: '-20px', marginBottom:'-20px' }} alt="" />
+                <img src={iconUrlFromCode(icon)} alt="" />
           </div>              
           <div className="col-sm-4">
                   <div className="flex " style={{padding: '5px'}}>
@@ -70,35 +69,35 @@ function WeatherCard({
           </div>
         </div>
         </div>
-        </div>
-       <div className="card-footer bg-transparent row">
-              <div class="col-sm-3">
+        <div className="row">
+              <div className="col-sm-3">
                 <UilSun />
                 <p>
-                  SunRise:{" "}
+                  Rise:{" "}
                   <span>{formatToLocalTime(sunrise, timezone, "hh:mm a")}</span>
                 </p>
               </div>
-              <div class="col-sm-3">
+              <div className="col-sm-3">
                 <UilSunset />
                 <p>
-                  SunSet:{" "}
+                  Set:{" "}
                   <span>{formatToLocalTime(sunset, timezone, "hh:mm a")}</span>
                 </p>
               </div>
-              <div class="col-sm-3">
+              <div className="col-sm-3">
                 <UilArrowUp />
                 <p>
                   High: <span>{`${temp_max.toFixed() - KELVIN}°`}</span>
                 </p>
               </div>
-              <div class="col-sm-3">
+              <div className="col-sm-3">
                 <UilArrowDown />
                 <p>
                   Low: <span>{`${temp_min.toFixed() - KELVIN}°`}</span>
                 </p>
               </div>
        </div>
+        </div>
     </div>
   );
 }

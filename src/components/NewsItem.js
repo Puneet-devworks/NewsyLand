@@ -18,7 +18,7 @@ const NewsItem = (props) => {
           />
         </div>
         <div className="col-md-8">
-        <div class="card-header bg-transparent">
+        <div className="card-header bg-transparent">
             <h5 className="card-title">{title}</h5>
             </div>
           <div className="card-body">

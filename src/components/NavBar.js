@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import logo from './newsylandLogo.gif'
 
 const NavBar = () => {
+
+
+
   return (
     <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -31,8 +34,8 @@ const NavBar = () => {
                 placeholder="Search for news"
                 aria-label="Search"
               />
-              <button className="btn btn-outline-success" type="submit">
-                Go
+              <button className="btn btn-outline-primary" type="submit">
+                Find
               </button>
             </form>
             <ul className="navbar-nav ms-auto w-100 justify-content-end">

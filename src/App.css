@@ -44,3 +44,9 @@
   width: 100%;
 }
 .navbar-brand {float:none;}
+
+@media screen and (max-width: 600px) {
+
+  .myImageClass {display:none;}
+
+}
