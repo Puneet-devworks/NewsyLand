@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { formatToLocalTime, iconUrlFromCode } from "../services/weatherService";
 import {
   UilTemperature,

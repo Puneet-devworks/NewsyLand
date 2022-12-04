@@ -7,12 +7,11 @@ import LoadingBar from 'react-top-loading-bar'
 import WeatherCard from './components/WeatherCard';
 import getFormattedWeatherData from "./services/weatherService";
 import StockMarketCard from './components/StockMarketCard';
-import getMarketData from './components/StockMarketService';
 
 function App() {
-  const pageSize = 5;
-  const apiKeyNews = "60988c981f754dc3995925e641f6ca7f";
+  const pageSize = 12;
   const [progress, setProgress] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('*');
   const [weather, setWeather] = useState({ details:'No Detail', icon:'01d', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:0, timezone:1000, dt:1669793656, name:'- ', country:'-' });
 
   useEffect(() => {
@@ -35,29 +34,33 @@ function App() {
       });
     };
 
-    
-
   }, []);
   
 
   return (
     <div className="App">
       <Router>
-      <NavBar/>
+      <NavBar setSearchQuery={setSearchQuery}/>
       <LoadingBar
         height={3}
         color='#f11946'
         progress={progress} 
       />
         <Routes>
-          <Route  path="/" element={<><div className="container"><div className="card-group" style={{ margin: '35px 0px -60px', marginTop: '90px' }}><WeatherCard weather={weather}></WeatherCard><StockMarketCard/></div></div><News setProgress={setProgress} apiKey={apiKeyNews} key="general" pageSize={pageSize} country="in" category="general" /></>}/> 
-          <Route  path="/business" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="business" pageSize={pageSize} country="in" category="business"/>} /> 
-          <Route  path="/entertainment" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="entertainment" pageSize={pageSize} country="in" category="entertainment"/>} /> 
-          <Route  path="/general" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="general" pageSize={pageSize} country="in" category="general"/>} />
-          <Route  path="/health" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="health" pageSize={pageSize} country="in" category="health"/>} />
-          <Route  path="/science" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="science" pageSize={pageSize} country="in" category="science"/>} />
-          <Route  path="/sports" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="sports" pageSize={pageSize} country="in" category="sports"/>} />
-          <Route  path="/technology" element={<News setProgress={setProgress} apiKey={apiKeyNews} key="technology" pageSize={pageSize} country="in" category="technology"/>} />
+          <Route  path="/" element={<><div className="container"><div className="card-group" style={{ margin: '35px 0px -60px', marginTop: '90px', padding: '10px' }}><WeatherCard weather={weather}></WeatherCard><StockMarketCard/></div></div><News setProgress={setProgress} key="general" pageSize={pageSize} country="IN" language="en" query={searchQuery} category="news" /></>}/> 
+          <Route  path="/business" element={<News setProgress={setProgress} key="business" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="business"/>} /> 
+          <Route  path="/economics" element={<News setProgress={setProgress} key="economics" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="economics"/>} />
+          <Route  path="/politics" element={<News setProgress={setProgress} key="politics" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="politics"/>} />
+          <Route  path="/entertainment" element={<News setProgress={setProgress} key="entertainment" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="entertainment"/>} /> 
+          <Route  path="/science" element={<News setProgress={setProgress} key="science" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="science"/>} />
+          <Route  path="/technology" element={<News setProgress={setProgress} key="technology" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="tech"/>} />
+          <Route  path="/sports" element={<News setProgress={setProgress} key="sports" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="sport"/>} />
+          <Route  path="/travel" element={<News setProgress={setProgress} key="travel" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="travel"/>} />
+          <Route  path="/music" element={<News setProgress={setProgress} key="music" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="music"/>} />
+          <Route  path="/food" element={<News setProgress={setProgress} key="food" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="food"/>} />
+          <Route  path="/gaming" element={<News setProgress={setProgress} key="gaming" pageSize={pageSize} country="IN" language="en" query={searchQuery}  category="gaming"/>} />
+          <Route  path="/search" element={<News setProgress={setProgress} key="search" pageSize={pageSize} country="IN" language="en" query={searchQuery} category="Search Results"/>} />
+
         </Routes>
       </Router>
     </div>

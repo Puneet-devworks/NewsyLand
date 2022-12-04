@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useRef }  from "react";
 import { Link } from "react-router-dom";
 import logo from './newsylandLogo.gif'
+import { useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
 
+  const navigate = useNavigate();
+  const textInput = useRef(null);
+  
+  const searchNews = (event) => {
+    event.preventDefault();
+    let searchQueryValue = (textInput.current.value === "" || textInput.current.value === " " || textInput.current.value === null || textInput.current.value === undefined) ?  "*" : textInput.current.value;
+    props.setSearchQuery(searchQueryValue);
+    navigate("/search");
+  };
 
+  const onSearchBarChange = () => {
+    if(textInput.current.value === "")
+    props.setSearchQuery("*");
+  };
 
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark" style={{ backgroundColor : '#4A06A2' }}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
           <img src={logo} alt="Logo" width="45" height="30" className="me-2 align-text-center"/>
@@ -31,10 +45,12 @@ const NavBar = () => {
                 className="form-control me-2"
                 type="search"
                 size="50"
-                placeholder="Search for news"
+                placeholder="Search for news with keyword"
                 aria-label="Search"
+                ref={textInput}
+                onChange={onSearchBarChange}
               />
-              <button className="btn btn-outline-primary" type="submit">
+              <button className="btn btn-outline-primary" type="submit" onClick={searchNews}>
                 Find
               </button>
             </form>
@@ -50,18 +66,18 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/economics">
+                  Economics
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/politics">
+                  Politics
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/entertainment">
                   Entertainment
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/general">
-                  General
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/health">
-                  Health
                 </Link>
               </li>
               <li className="nav-item">
@@ -70,13 +86,33 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/technology">
+                  Technology
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/sports">
                   Sports
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/technology">
-                  Technology
+                <Link className="nav-link" to="/travel">
+                  Travel
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/music">
+                  Music
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/food">
+                  Food
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/gaming">
+                  Gaming
                 </Link>
               </li>
             </ul>

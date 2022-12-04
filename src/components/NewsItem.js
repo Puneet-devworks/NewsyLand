@@ -2,9 +2,9 @@ import React from "react";
 import defaultNewsImg from './defaultNews.jpg';
 
 const NewsItem = (props) => {
-  let { title, description, imageUrl, newsUrl, author, date, source } = props;
+  let { title, description, imageUrl, newsUrl, author, date} = props;
   return (
-    <div className="card mb-3">
+    <div className="card mb-3" style={{width:'100%'}}>
       <div className="row g-0">
         <div className="col-md-4">
           <img
@@ -35,10 +35,11 @@ const NewsItem = (props) => {
             <a
               rel="noreferrer"
               href={newsUrl}
-              target="_blank"
+              // eslint-disable-next-line 
+              // target="_blank"
               className="btn btn-sm btn-primary"
               role="button"
-              data-bs-toggle="button"
+              // data-bs-toggle="button"
               style={{width:'100%'}}
             >
               Read More
