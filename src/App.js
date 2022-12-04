@@ -9,6 +9,7 @@ import getFormattedWeatherData from "./services/weatherService";
 import StockMarketCard from './components/StockMarketCard';
 
 function App() {
+  document.body.style = 'background: #EEECFC;';
   const pageSize = 12;
   const [progress, setProgress] = useState(0);
   const [searchQuery, setSearchQuery] = useState('*');
