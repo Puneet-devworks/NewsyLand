@@ -1,6 +1,8 @@
 {
   "name": "newsyland",
   "version": "0.1.0",
+  "proxy": "https://query1.finance.yahoo.com/v7",
+  "homepage": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@iconscout/react-unicons": "^1.1.6",
@@ -8,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "cores": "^0.8.5",
+    "http-proxy-middleware": "^2.0.6",
     "luxon": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

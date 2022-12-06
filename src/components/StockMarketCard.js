@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getMarketData from "./StockMarketService";
+import getMarketData from "../services/StockMarketService";
 import {
   UilArrowDown,
   UilArrowUp,
