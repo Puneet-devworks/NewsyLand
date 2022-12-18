@@ -1,6 +1,7 @@
 
 function getMarketData(marketSymbol) {
-    const url = 'https://cors-anywhere.herokuapp.com/https://query1.finance.yahoo.com/v7/finance/quote?symbols=^' + marketSymbol;
+    // fetching stockmarket data from proxy server hosted on https://newsylandstockmarketindexserver.onrender.com
+    const url = 'https://newsylandstockmarketindexserver.onrender.com/stockMarketData/' + marketSymbol;
     return fetch(url).then((res) => res.json());
   };
 
