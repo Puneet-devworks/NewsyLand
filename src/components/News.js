@@ -67,13 +67,12 @@ const News = (props)=>{
         return (
             <>
                 <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>{capitalizeFirstLetter(props.category)} : Top Headlines </h1>
-                {loading && <Spinner />}
+                <Spinner loading={loading}/>
                 {articles && <InfiniteScroll
                     dataLength={articles.length}
                     next={fetchMoreData}
                     hasMore={page !== totalPage}
-                    loader={<Spinner/>}
-                > 
+                    loader={<Spinner loading={loading}/>}> 
                     <div className="container">                 
                     <div className="card-group">
                         {articles.map((element) => {

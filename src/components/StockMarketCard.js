@@ -31,7 +31,7 @@ function StockMarketCard() {
     <div className="card mb-6 text-bg-light border-primary">
           <div className="card-header border-primary">Stock Market Update</div>
             <div className="card-body">
-            <div class="list-group">
+            <div className="list-group">
               {stockMarketsData.map((market) => {
                 return (
                   <div key={market.exchange}>

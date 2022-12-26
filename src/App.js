@@ -13,17 +13,28 @@ function App() {
   const pageSize = 12;
   const [progress, setProgress] = useState(0);
   const [searchQuery, setSearchQuery] = useState('*');
-  const [weather, setWeather] = useState({ details:'No Detail', icon:'01d', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:0, timezone:1000, dt:1669793656, name:'- ', country:'-' });
+  // const [weather, setWeather] = useState({ details:'Weather update not fetched', icon:'01d', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:273, timezone:1000, dt:1669793656, name:'- ', country:'-' });
+  const [weather, setWeather] = useState({ details:'Trying to Fetch Latest Weather Update', icon:'L', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:273, timezone:1000, dt:1669793656, name:'- ', country:'-' });
 
   useEffect(() => {
 
     if (navigator.geolocation) {
-      console.log("Fetching users location.");
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
+        // setWeather({details:'Featching Latest Weather Update', icon:'L'});
         fetchWeather(lat,lon);
-      });
+      }, function errorHandler(err) {
+        // eslint-disable-next-line
+        if(err.code == 1) {
+           alert("Weather update not available : Access to geolocation is denied!");
+           setWeather({details:'Weather update not available : Access to geolocation is denied!', icon:'E'});
+           // eslint-disable-next-line
+        } else if( err.code == 2) {
+           alert("Weather update not available : Position is unavailable!");
+           setWeather({details:'Weather update not available : Access to geolocation is denied!', icon:'E'});
+        }
+     });
     }
 
     const fetchWeather = async (lat,lon) => {

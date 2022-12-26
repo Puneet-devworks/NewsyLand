@@ -1,10 +1,19 @@
 import React from 'react'
-import loading from './loading.gif'
+import {RingLoader} from "react-spinners";
 
-const Spinner = ()=> {
+const Spinner = ({loading})=> {
         return (
-            <div className="text-center">
-                <img className="my-3" src={loading} alt="loading" />
+            <div style={{
+                position: "fixed",
+                left: "50%",
+                transform: "translate(-50%)"
+              }}>
+                <RingLoader	
+                        loading={loading}
+                        size={80}
+                        sizeUnit={"px"}
+                        color="#3498db"
+                      />
             </div>
         )
 }

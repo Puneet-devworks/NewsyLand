@@ -9,6 +9,7 @@ import {
   UilArrowDown,
   UilArrowUp,
 } from "@iconscout/react-unicons";
+import {PuffLoader} from "react-spinners";
 
 function WeatherCard({
   weather: {
@@ -33,6 +34,8 @@ function WeatherCard({
     <div className="card text-bg-info border-primary mb-6 ">
       <div className="card-header border-primary">Weather Update</div>
       <div className={icon.includes('n') ? "card-body bg-secondary bg-opacity-25" : "card-body bg-warning bg-opacity-25"}>
+        { 
+          !(icon=='L' || icon=='E') && <>
         <div>
           <p>{formatToLocalTime(dt, timezone)}</p>
         </div>
@@ -95,7 +98,26 @@ function WeatherCard({
                   Low: <span>{`${temp_min.toFixed() - KELVIN}°`}</span>
                 </p>
               </div>
-       </div>
+       </div></>}
+       {
+        (icon=='L' || icon=='E') && <>
+        <div>
+          <p>{details}</p>
+        </div>
+        <div className="card-text">
+        <div className="row" style={{display:'flex',alignItems:'center'}}>
+        <div style={{width: '100px', margin: 'auto', display: 'block'}}>
+                <PuffLoader	
+                        loading={icon=='L'}
+                        size={120}
+                        sizeUnit={"px"}
+                        color="#3498db"
+                      />
+            </div>
+        </div>
+        </div>
+        </>
+       }
         </div>
     </div>
   );
