@@ -4,13 +4,14 @@ import {
   UilArrowDown,
   UilArrowUp,
 } from "@iconscout/react-unicons";
+import {PuffLoader} from "react-spinners";
 
 const stockMarketsSymbol = ['NSEI','BSESN','IXIC','DJI'];
 
 
 function StockMarketCard() {
 
-  const [stockMarketsData, setstockMarketsData] = useState([]);
+  const [stockMarketsData, setstockMarketsData] = useState(null);
 
   useEffect( () => {
     let aStockMarketsData = [];
@@ -31,6 +32,22 @@ function StockMarketCard() {
     <div className="card mb-6 text-bg-light border-primary">
           <div className="card-header border-primary">Stock Market Update</div>
             <div className="card-body">
+              {
+                stockMarketsData === null ?  <><div>
+                <p>Trying to Fetch Latest Stock Market Update</p>
+              </div>
+              <div className="card-text">
+              <div className="row" style={{display:'flex',alignItems:'center'}}>
+              <div style={{width: '100px', margin: 'auto', display: 'block'}}>
+                      <PuffLoader	
+                              loading={true}
+                              size={100}
+                              sizeUnit={"px"}
+                              color="#3498db"
+                            />
+                  </div>
+              </div>
+              </div></> :
             <div className="list-group">
               {stockMarketsData.map((market) => {
                 return (
@@ -73,6 +90,7 @@ function StockMarketCard() {
                 );
               })}
             </div>
+}
           </div>
     </div>
   );

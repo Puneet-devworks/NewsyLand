@@ -35,7 +35,7 @@ function WeatherCard({
       <div className="card-header border-primary">Weather Update</div>
       <div className={icon.includes('n') ? "card-body bg-secondary bg-opacity-25" : "card-body bg-warning bg-opacity-25"}>
         { 
-          !(icon=='L' || icon=='E') && <>
+          !(icon==='L' || icon==='E') && <>
         <div>
           <p>{formatToLocalTime(dt, timezone)}</p>
         </div>
@@ -100,7 +100,7 @@ function WeatherCard({
               </div>
        </div></>}
        {
-        (icon=='L' || icon=='E') && <>
+        (icon==='L' || icon==='E') && <>
         <div>
           <p>{details}</p>
         </div>
@@ -108,8 +108,8 @@ function WeatherCard({
         <div className="row" style={{display:'flex',alignItems:'center'}}>
         <div style={{width: '100px', margin: 'auto', display: 'block'}}>
                 <PuffLoader	
-                        loading={icon=='L'}
-                        size={120}
+                        loading={icon==='L'}
+                        size={100}
                         sizeUnit={"px"}
                         color="#3498db"
                       />

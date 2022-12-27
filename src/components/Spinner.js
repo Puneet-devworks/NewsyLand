@@ -10,7 +10,7 @@ const Spinner = ({loading})=> {
               }}>
                 <RingLoader	
                         loading={loading}
-                        size={80}
+                        size={100}
                         sizeUnit={"px"}
                         color="#3498db"
                       />
