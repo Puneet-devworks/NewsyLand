@@ -110,7 +110,7 @@ function WeatherCard({
                 <PuffLoader	
                         loading={icon==='L'}
                         size={100}
-                        sizeUnit={"px"}
+                        sizeunit={"px"}
                         color="#3498db"
                       />
             </div>

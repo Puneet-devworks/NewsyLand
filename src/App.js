@@ -13,7 +13,6 @@ function App() {
   const pageSize = 12;
   const [progress, setProgress] = useState(0);
   const [searchQuery, setSearchQuery] = useState('*');
-  // const [weather, setWeather] = useState({ details:'Weather update not fetched', icon:'01d', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:273, timezone:1000, dt:1669793656, name:'- ', country:'-' });
   const [weather, setWeather] = useState({ details:'Trying to Fetch Latest Weather Update', icon:'L', temp:273, temp_min:273, temp_max:273, sunrise:0, sunset:0, speed:0, humidity:0, feels_like:273, timezone:1000, dt:1669793656, name:'- ', country:'-' });
 
   useEffect(() => {

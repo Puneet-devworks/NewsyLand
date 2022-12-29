@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
@@ -72,7 +71,7 @@ const News = (props)=>{
                     dataLength={articles.length}
                     next={fetchMoreData}
                     hasMore={page !== totalPage}
-                    loader={<Spinner loading={loading}/>}> 
+                    loader={<Spinner loading={true}/>}>
                     <div className="container">                 
                     <div className="card-group">
                         {articles.map((element) => {

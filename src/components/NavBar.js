@@ -1,6 +1,6 @@
 import React, { useRef }  from "react";
 import { Link } from "react-router-dom";
-import logo from './newsylandLogo.gif'
+import logo from './newsylandLogo.gif';
 import { useNavigate } from "react-router-dom";
 
 const NavBar = (props) => {
@@ -13,11 +13,17 @@ const NavBar = (props) => {
     let searchQueryValue = (textInput.current.value === "" || textInput.current.value === " " || textInput.current.value === null || textInput.current.value === undefined) ?  "*" : textInput.current.value;
     props.setSearchQuery(searchQueryValue);
     navigate("/search");
+    toggleCollapseButton();
   };
 
   const onSearchBarChange = () => {
     if(textInput.current.value === "")
     props.setSearchQuery("*");
+  };
+
+  const toggleCollapseButton = () => {
+      var menuToggle = document.getElementById('navbarSupportedContent');
+      menuToggle.className = "collapse navbar-collapse";
   };
 
   return (
@@ -55,62 +61,62 @@ const NavBar = (props) => {
               </button>
             </form>
             <ul className="navbar-nav ms-auto w-100 justify-content-end">
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/business">
                   Business
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/economics">
                   Economics
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/politics">
                   Politics
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/entertainment">
                   Entertainment
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/science">
                   Science
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/technology">
                   Technology
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/sports">
                   Sports
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/travel">
                   Travel
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/music">
                   Music
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/food">
                   Food
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleCollapseButton}>
                 <Link className="nav-link" to="/gaming">
                   Gaming
                 </Link>

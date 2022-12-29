@@ -42,7 +42,7 @@ function StockMarketCard() {
                       <PuffLoader	
                               loading={true}
                               size={100}
-                              sizeUnit={"px"}
+                              sizeunit={"px"}
                               color="#3498db"
                             />
                   </div>
